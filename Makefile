@@ -1,11 +1,12 @@
 makefile_dir 	:= $(abspath $(shell pwd))
 SHELL := /bin/bash
 
-docker_group	:= kane
+docker_registry := us.gcr.io
+docker_group	:= stnicholas-151719
 docker_image 	:= kane-webserver
-docker_ver   	:= 1.0.0
-docker_tag   	:= google/$(docker_group)/$(docker_image):$(docker_ver)
-docker_src 		:= /src
+docker_ver   	:= 1.0.1
+docker_tag   	:= $(docker_registry)/$(docker_group)/$(docker_image):$(docker_ver)
+docker_src      := /public_html
 
 .PHONY: list docker-build docker-run docker-push
 
@@ -36,7 +37,7 @@ docker-dev:
 	docker run -e "OS_USERNAME=$(USER)" -e "OS_PASSWORD=$$pw" -it -v $(makefile_dir):$(docker_src) --rm $(docker_tag)
 
 docker-push:
-	docker push $(docker_tag)
+        /home/nlewis001c/google-cloud-sdk/bin/gcloud docker -- push $(docker_tag)
 
 publish:
 	make docker-build
