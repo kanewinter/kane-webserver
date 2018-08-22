@@ -4,8 +4,10 @@
 
 FROM httpd:alpine 
 
+sed -i 's/Listen\ 80/Listen\ 5000/g' /usr/local/apache2/conf/httpd.conf
+
 COPY ./public-html/ /usr/local/apache2/htdocs/
 
-EXPOSE 80
+EXPOSE 5000
 
 ENTRYPOINT ["httpd-foreground"]
