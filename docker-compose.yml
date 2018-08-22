@@ -1,9 +1,0 @@
-kane-webserver:
-  ports:
-  - 80/tcp
-  - 443/tcp
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.container.hostname_override: container_name
-  image: kane-webserver
-  container_name: kane-webserver
